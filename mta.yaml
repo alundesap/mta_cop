@@ -1,0 +1,70 @@
+ID: cop
+_schema-version: '2.1'
+description: Community of Practice Demo
+version: 0.0.1
+
+modules:
+
+### New Modules Here ###
+
+ - name: cop-njs
+   type: nodejs
+   path: nodejs
+   parameters:
+      memory: 256M
+      disk-quota: 512M
+      #host: cop-njs-${space}
+      #domain: yourdomain.com
+   provides:
+    - name: cop_njs_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: cop-uaa
+    - name: cop-hdi
+
+ - name: cop-hdb
+   type: hdb
+   path: db
+   parameters:
+      memory: 512M
+      disk-quota: 512M
+   requires:
+    - name: cop-hdi
+
+ - name: cop-web
+   type: html5
+   path: web
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   requires:
+    - name: cop-uaa
+   ### New Destinations Here ###
+    - name: cop_njs_api
+      group: destinations
+      properties:
+         name: cop_njs_be
+         url: ~{url}
+         forwardAuthToken: true
+
+resources:
+
+### New Resources Here ###
+
+ - name: cop-hdi
+   type: com.sap.xs.hdi-container
+   parameters:
+      service-name: COP_HDI
+      config:
+         schema: COP_DB
+
+ - name: cop-uaa
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+      service-name: COP_UAA
+   type: org.cloudfoundry.managed-service
+
+
