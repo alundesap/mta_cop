@@ -6,6 +6,12 @@
   },
   "routes": [
     {
+      "source": "(python/)(.*)",
+      "destination": "cop_pyt_be",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
       "source": "(nodejs/)(.*)",
       "destination": "cop_njs_be",
       "csrfProtection": true,
@@ -18,4 +24,5 @@
     }
   ]
 }
+
 

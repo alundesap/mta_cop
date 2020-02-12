@@ -7,6 +7,22 @@ modules:
 
 ### New Modules Here ###
 
+ - name: cop-pyt
+   type: python
+   path: python
+   parameters:
+      memory: 256M
+      disk-quota: 512M
+      #host: cop-pyt-${space}
+      #domain: yourdomain.com
+   provides:
+    - name: cop_pyt_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: cop-uaa
+    - name: cop-hdi
+
  - name: cop-njs
    type: nodejs
    path: nodejs
@@ -41,6 +57,12 @@ modules:
    requires:
     - name: cop-uaa
    ### New Destinations Here ###
+    - name: cop_pyt_api
+      group: destinations
+      properties:
+         name: cop_pyt_be
+         url: ~{url}
+         forwardAuthToken: true
     - name: cop_njs_api
       group: destinations
       properties:
@@ -66,5 +88,6 @@ resources:
       service: xsuaa
       service-name: COP_UAA
    type: org.cloudfoundry.managed-service
+
 
 
