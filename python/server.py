@@ -22,10 +22,16 @@ from cfenv import AppEnv
 #
 #from sap.cf_logging import flask_logging
 #
+
 #https://help.sap.com/viewer/0eec0d68141541d1b07893a39944924e/2.0.03/en-US/d12c86af7cb442d1b9f8520e2aba7758.html
 from hdbcli import dbapi
 
 import platform
+
+# VSCode Based Remote Debugging
+import ptvsd
+ptvsd.enable_attach(address=("localhost",5678))
+#ptvsd.wait_for_attach() # Block here before continuing.
 
 app = Flask(__name__)
 env = AppEnv()
@@ -41,22 +47,26 @@ hana = env.get_service(label='hana')
 
 def attach(port, host):
     try:
-        print("pydevd attached.")
-        import pydevd
-        pydevd.stoptrace() #I.e.: disconnect if already connected
-        # pydevd.DebugInfoHolder.DEBUG_RECORD_SOCKET_READS = True
-        # pydevd.DebugInfoHolder.DEBUG_TRACE_BREAKPOINTS = 3
-        # pydevd.DebugInfoHolder.DEBUG_TRACE_LEVEL = 3
-        pydevd.settrace(
-            port=port,
-            host=host,
-            stdoutToServer=True,
-            stderrToServer=True,
-            overwrite_prev_trace=True,
-            suspend=False,
-            trace_only_current_thread=False,
-            patch_multiprocessing=False,
-        )
+        #print("pydevd attached.")
+        #import pydevd
+        print("ptvsd attached.")
+        import ptvsd
+        #pydevd.stoptrace() #I.e.: disconnect if already connected
+        ## pydevd.DebugInfoHolder.DEBUG_RECORD_SOCKET_READS = True
+        ## pydevd.DebugInfoHolder.DEBUG_TRACE_BREAKPOINTS = 3
+        ## pydevd.DebugInfoHolder.DEBUG_TRACE_LEVEL = 3
+        #pydevd.settrace(
+        #    port=port,
+        #    host=host,
+        #    stdoutToServer=True,
+        #    stderrToServer=True,
+        #    overwrite_prev_trace=True,
+        #    suspend=False,
+        #    trace_only_current_thread=False,
+        #    patch_multiprocessing=False,
+        #)
+        ptvsd.enable_attach(address=(host,port))
+        ptvsd.wait_for_attach() # Block here before continuing.
     except:
         import traceback;traceback.print_exc() 
         
@@ -65,9 +75,11 @@ def attach(port, host):
 # If there is no path then just return Hello World and this module's instance number
 # Requests passed through the app-router will never hit this route.
 @app.route('/')
+@app.route('/python/')
 def hello_world():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/env">/env</a><br />\n'
+    output += '<a href="/python/attach">/python/attach</a><br />\n'
     output += '<a href="/python/links">/python/links</a><br />\n'
     output += '<a href="/python/test">/python/test</a><br />\n'
     output += '<a href="/python/db_only">/python/db_only</a><br />\n'
@@ -180,8 +192,10 @@ def dump_pyenv():
 @app.route('/python/attach')
 def do_attach():
     output = '<pre>\n Attaching to debugger... \n'
-    output = '\n Double check that you Eclipse Debug Server is listening on port 5678 and the tunnel is connected. \n'
+    output = '\n Double check that your VSCode Debug Server is listening on port 5678 and the tunnel is connected. \n'
     attach(5678,"localhost")
+    #ptvsd.enable_attach(address=('localhost',5678))
+    #ptvsd.wait_for_attach() # Block here before continuing.
     output += '\n Set some breakpoints...\n'
     output += '<a href="/python/env">/python/env</a> + test breakpoints<br />\n'
     output += '\n</pre>\n'
@@ -405,5 +419,6 @@ if __name__ == '__main__':
     # Use this for production 
     #app.run(host='0.0.0.0', port=port)
     # Use this for debugging 
-    app.run(debug=True, host='0.0.0.0', port=port)
+    #app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=False, host='0.0.0.0', port=port) # Use when remote debugging
 

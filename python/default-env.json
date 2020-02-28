@@ -1,0 +1,66 @@
+{
+	"PORT": "8002",
+    "TARGET_CONTAINER": "cop-hdi",		
+    "VCAP_SERVICES": {
+		"hana": [
+			{
+				"name": "cop-hdi",
+				"label": "hana",
+				"tags": [
+					"hana",
+					"database",
+					"relational"
+				],
+				"plan": "hdi-shared",
+				"credentials": {
+					"schema": "COP_DB",
+					"hdi_password": "Plak8484",
+					"tenant_name": "HXE",
+					"password": "Plak8484",
+					"driver": "com.sap.db.jdbc.Driver",
+					"port": "30015",
+					"encrypt": false,
+					"db_hosts": [
+						{
+							"port": 30015,
+							"host": "192.168.132.252"
+						}
+					],
+					"host": "192.168.132.252",
+					"hdi_user": "COP_DB_270000005A5103041700D6009BE0A0ED_DT",
+					"user": "COP_DB_270000005A5103041700D6009BE0A0ED_RT",
+					"url": "jdbc:sap://192.168.132.252:30015/?currentschema=HDI_WITHOUT_XSA"
+				}
+			}
+		],
+		"xsuaa": [
+			{
+			 "binding_name": null,
+			 "credentials": {
+			  "apiurl": "https://api.authentication.us10.hana.ondemand.com",
+			  "clientid": "sb-cop!t2387",
+			  "clientsecret": "WwfalqcugFTLUofwTvKl4gV9klU=",
+			  "identityzone": "conciletime",
+			  "identityzoneid": "6e3ca693-c112-4862-9c30-254a18b59a55",
+			  "sburl": "https://internal-xsuaa.authentication.us10.hana.ondemand.com",
+			  "tenantid": "6e3ca693-c112-4862-9c30-254a18b59a55",
+			  "tenantmode": "dedicated",
+			  "uaadomain": "authentication.us10.hana.ondemand.com",
+			  "url": "https://conciletime.authentication.us10.hana.ondemand.com",
+			  "verificationkey": "-----BEGIN PUBLIC KEY-----MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAx2ZOcKplHEIvBx1j0dNK9J/3E8uKrWFnJRBsdrYvSI6gbV2j2vakAobNxGEz0rXVn+Ljz+2XMgFxlv8in7coW7wzLNkOZDXkI6m27hxAdFtihDzoVGRGDhLkxMytvNcz/uVwoa+RSviA3kJ56s7D5h2kXsVEUQVHURvfku6MwDO0+ZnEuY174QY6NiwCn6DiMDyQWFtPwHT3l2b9uQaLh2szCC21Stze788prD142LePX1CdhRLkwrOZOoAlMNrEdlqqNLadO5WX2m71VICIGjp6iQ4qFHPPJ8tD0d7cRSFnjsBXcbGfzFEhDoYTAF37upXQhhsQywP37AD2q0E9LqRwaMkYOuDEEY5Q/Ph9EVeu8zmWbNRQCoqwJ4CbTJ2CMgYCGPj2cgc+lKkPXQOIAYN8yh2MaLDPybV0P+dBMI9z2jeeT5ODRsgyfa+7ucLQnOXrR8fRUgULbmtLfHNqGZOmhD1cN0MI+S6KxqvPDJmqHOn+nGAQ7uXnW9mjXlNwn3xqZgoXP7+sMRoldDuwGcCIAjRF7DOvNkT0cgyYIJD98tCHMWVm/Q6AxKsEwnvxp55g+wNaVaG20qRyDssR2DTCQW4cpkgZpWk6jKHZh6tsgzcm0EOB2h0LQiN/hM9sF/BX2cd8ihXfxgWuEkbLXWjQAXI68eIOaUJ1LqsoEJsCAwEAAQ==-----END PUBLIC KEY-----",
+			  "xsappname": "cop!t2387"
+			 },
+			 "instance_name": "COP_UAA",
+			 "label": "xsuaa",
+			 "name": "COP_UAA",
+			 "plan": "application",
+			 "provider": null,
+			 "syslog_drain_url": null,
+			 "tags": [
+			  "xsuaa"
+			 ],
+			 "volume_mounts": []
+			}
+		   ]
+	}
+}

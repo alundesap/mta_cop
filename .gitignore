@@ -24,3 +24,5 @@ gen/
 mta_archives/
 node_modules/
 *.mtar
+.DS_Store
+__pycache__/

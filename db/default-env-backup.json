@@ -1,0 +1,36 @@
+{
+    "TARGET_CONTAINER": "hdi_db_without_xsa",		
+    "VCAP_SERVICES": {
+		"hana": [
+			{
+				"name": "hdi_db_without_xsa",
+				"label": "hana",
+				"tags": [
+					"hana",
+					"database",
+					"relational"
+				],
+				"plan": "hdi-shared",
+				"credentials": {
+					"schema": "HDI_WITHOUT_XSA",
+					"hdi_password": "<password>",
+					"tenant_name": "HXE",
+					"password": "<password>",
+					"driver": "com.sap.db.jdbc.Driver",
+					"port": "30015",
+					"encrypt": false,
+					"db_hosts": [
+						{
+							"port": 30015,
+							"host": "hanapm.local.com"
+						}
+					],
+					"host": "hanapm.local.com",
+					"hdi_user": "SYSTEM",
+					"user": "SYSTEM",
+					"url": "jdbc:sap://hanapm.local.com:30015/?currentschema=HDI_WITHOUT_XSA"
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"PORT": "8001",
+    "TARGET_CONTAINER": "cop-hdi",		
+    "VCAP_SERVICES": {
+		"hana": [
+			{
+				"name": "cop-hdi",
+				"label": "hana",
+				"tags": [
+					"hana",
+					"database",
+					"relational"
+				],
+				"plan": "hdi-shared",
+				"credentials": {
+					"schema": "COP_DB",
+					"hdi_password": "Plak8484",
+					"tenant_name": "HXE",
+					"password": "Plak8484",
+					"driver": "com.sap.db.jdbc.Driver",
+					"port": "30015",
+					"encrypt": false,
+					"db_hosts": [
+						{
+							"port": 30015,
+							"host": "hxe.local.com"
+						}
+					],
+					"host": "hxe.local.com",
+					"hdi_user": "COP_DB_270000005A5103041700D6009BE0A0ED_DT",
+					"user": "COP_DB_270000005A5103041700D6009BE0A0ED_RT",
+					"url": "jdbc:sap://hxe.local.com:30015/?currentschema=HDI_WITHOUT_XSA"
+				}
+			}
+		]
+	}
+}

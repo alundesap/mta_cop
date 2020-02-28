@@ -4,4 +4,5 @@ cfenv
 sap_py_jwt
 sap_xssec
 hdbcli
-pydevd
+#pydevd #Eclipse Based Remote Debugging
+ptvsd  #VSCode Based Remote Debugging

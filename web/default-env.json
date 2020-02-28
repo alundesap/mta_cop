@@ -1,0 +1,43 @@
+{
+	"PORT": "8000",
+    "destinations": [ {
+		"forwardAuthToken" : true,
+		"name" : "cop_pyt_be",
+		"url" : "http://localhost:8002/"
+	  }, {
+		"forwardAuthToken" : true,
+		"name" : "cop_njs_be",
+		"url" : "http://localhost:8001/"
+	  } ],		
+    "VCAP_SERVICES": {
+		"xsuaa": [
+		 {
+		  "binding_name": null,
+		  "credentials": {
+		   "apiurl": "https://api.authentication.us10.hana.ondemand.com",
+		   "clientid": "sb-cop!t2387",
+		   "clientsecret": "WwfalqcugFTLUofwTvKl4gV9klU=",
+		   "identityzone": "conciletime",
+		   "identityzoneid": "6e3ca693-c112-4862-9c30-254a18b59a55",
+		   "sburl": "https://internal-xsuaa.authentication.us10.hana.ondemand.com",
+		   "tenantid": "6e3ca693-c112-4862-9c30-254a18b59a55",
+		   "tenantmode": "dedicated",
+		   "uaadomain": "authentication.us10.hana.ondemand.com",
+		   "url": "https://conciletime.authentication.us10.hana.ondemand.com",
+		   "verificationkey": "-----BEGIN PUBLIC KEY-----MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAx2ZOcKplHEIvBx1j0dNK9J/3E8uKrWFnJRBsdrYvSI6gbV2j2vakAobNxGEz0rXVn+Ljz+2XMgFxlv8in7coW7wzLNkOZDXkI6m27hxAdFtihDzoVGRGDhLkxMytvNcz/uVwoa+RSviA3kJ56s7D5h2kXsVEUQVHURvfku6MwDO0+ZnEuY174QY6NiwCn6DiMDyQWFtPwHT3l2b9uQaLh2szCC21Stze788prD142LePX1CdhRLkwrOZOoAlMNrEdlqqNLadO5WX2m71VICIGjp6iQ4qFHPPJ8tD0d7cRSFnjsBXcbGfzFEhDoYTAF37upXQhhsQywP37AD2q0E9LqRwaMkYOuDEEY5Q/Ph9EVeu8zmWbNRQCoqwJ4CbTJ2CMgYCGPj2cgc+lKkPXQOIAYN8yh2MaLDPybV0P+dBMI9z2jeeT5ODRsgyfa+7ucLQnOXrR8fRUgULbmtLfHNqGZOmhD1cN0MI+S6KxqvPDJmqHOn+nGAQ7uXnW9mjXlNwn3xqZgoXP7+sMRoldDuwGcCIAjRF7DOvNkT0cgyYIJD98tCHMWVm/Q6AxKsEwnvxp55g+wNaVaG20qRyDssR2DTCQW4cpkgZpWk6jKHZh6tsgzcm0EOB2h0LQiN/hM9sF/BX2cd8ihXfxgWuEkbLXWjQAXI68eIOaUJ1LqsoEJsCAwEAAQ==-----END PUBLIC KEY-----",
+		   "xsappname": "cop!t2387"
+		  },
+		  "instance_name": "COP_UAA",
+		  "label": "xsuaa",
+		  "name": "COP_UAA",
+		  "plan": "application",
+		  "provider": null,
+		  "syslog_drain_url": null,
+		  "tags": [
+		   "xsuaa"
+		  ],
+		  "volume_mounts": []
+		 }
+		]
+	   }	  
+}
